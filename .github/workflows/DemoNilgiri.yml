@@ -3,7 +3,7 @@ name: Nilgiri_Automation
 on:
   push:
     branches:
-      - dev
+      - main
   workflow_dispatch:
     inputs:
       custom_feature_file:
