@@ -29,7 +29,6 @@ jobs:
 
       - name: Run Sanity Tests
         run: npm run sanityTests
-
   run_single_file_with_curl:
     runs-on: ubuntu-latest
     if: github.event_name == 'workflow_dispatch' && (github.event.inputs.custom_feature_file || '') != ''
@@ -79,3 +78,18 @@ jobs:
 
       - name: Run Tests
         run: npm run automation -- --headed=false
+  run_cucumber_feature:
+          runs-on: ubuntu-latest
+          if: github.event.workflow_run.event == 'workflow_dispatch' && github.event.inputs.custom_feature_file
+          steps:
+            - name: Checkout Repository
+              uses: actions/checkout@v2
+      
+            - name: Install Dependencies
+              run: npm run automation --headed=false  # Modify this based on your project setup
+      
+            - name: Run Cucumber Feature
+              run: npm run cucumberRun "${{ github.event.inputs.custom_feature_file }}|| true"
+            - name: Generete Report
+              run: npm run posttest
+  
