@@ -1,7 +1,6 @@
 import { test } from "@playwright/test";
 import { uiCommonUtils } from "../../utils/uiCommonMethodModule";
 const testSpec = uiCommonUtils.uiBase.applicationHome
-import * as testData from "../../resource/uiTestData/uiTestData.json";
 const resource: string = "/";
 
 
@@ -24,4 +23,3 @@ test('Validate all Menu Items in Home Page', async ({ page, baseURL }) => {
         await testSpec.scrollDownToLastOfPage({ page })
         await testSpec.validateConactUsSection({ page })
     })
-    
